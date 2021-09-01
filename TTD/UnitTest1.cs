@@ -30,5 +30,16 @@ namespace TTD
             //assert
             i.Should().Be(expected);
         }
+
+        [Test]
+        public void StringCalcShouldThrowArgumentExceptionWhenDelimitersUsedIncorrectly()
+        {
+            //arrange
+            var calc = new StringCalculator();
+            var testString = "1,\n";
+            
+            //act & assert
+            Assert.Throws<ArgumentException>(() => calc.Add(testString));
+        }
     }
 }
