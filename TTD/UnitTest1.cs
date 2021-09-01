@@ -1,5 +1,8 @@
+using System;
+using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace TTD
 {
@@ -11,16 +14,20 @@ namespace TTD
         }
 
         [Test]
-        public void StringCalcShouldAddTwoNumbersWhenTwoNumbersPassedWithComma()
+        [TestCase("",0)]
+        [TestCase("1,2",3)]
+        [TestCase("1,2,3", 6)]
+        [TestCase("1,2,3,4,5", 15)]
+        public void StringCalcShouldAddTwoNumbersWhenTwoNumbersPassedWithComma(string inputNumbers, int expected)
         {
             //arrange
             var calc = new StringCalculator();
             
             //act
-            var i = calc.Add("1,2");
+            var i = calc.Add(inputNumbers);
             
             //assert
-            i.Should().Be(3);
+            i.Should().Be(expected);
         }
     }
 }

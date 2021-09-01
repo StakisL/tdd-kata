@@ -4,10 +4,20 @@ namespace TTD
 {
     public class StringCalculator
     {
-        public int Add(string number)
+        public int Add(string inputNumbers)
         {
-            var numbers = number.Split(',');
-            return Convert.ToInt32(numbers[0]) + Convert.ToInt32(numbers[1]);
+            if (string.IsNullOrEmpty(inputNumbers))
+                return 0;
+            
+            var numbers = inputNumbers.Split(',');
+
+            var result = 0;
+            foreach (var number in numbers)
+            {
+                result += Convert.ToInt32(number);
+            }
+            
+            return result;
         }
     }
 }
