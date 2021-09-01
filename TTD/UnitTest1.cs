@@ -18,6 +18,7 @@ namespace TTD
         [TestCase("1,2",3)]
         [TestCase("1,2,3", 6)]
         [TestCase("1,2,3,4,5", 15)]
+        [TestCase("1,2\n3",6)]
         public void StringCalcShouldAddTwoNumbersWhenTwoNumbersPassedWithComma(string inputNumbers, int expected)
         {
             //arrange

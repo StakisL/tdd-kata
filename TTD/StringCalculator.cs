@@ -9,7 +9,7 @@ namespace TTD
             if (string.IsNullOrEmpty(inputNumbers))
                 return 0;
             
-            var numbers = inputNumbers.Split(',');
+            var numbers = inputNumbers.Split(new []{',', '\n'});
 
             var result = 0;
             foreach (var number in numbers)
