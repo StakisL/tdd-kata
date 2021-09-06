@@ -45,12 +45,13 @@ namespace TTD
         }
 
         [Test]
-        public void FindDelimiterShouldReturnSemiColumnWhenSemiColumnSetAfterTwoSlashes()
+        [TestCase("//;\n1;2", ";")]
+        [TestCase("///fdsgsdgsd\fdsgdsgd", "/")]
+        public void FindDelimiterShouldReturnSemiColumnWhenSemiColumnSetAfterTwoSlashes(string inputString, string result)
         {
-            var testString = "//;\n1;2";
-            var reg = StringCalculator.FindDelimiter(testString);
+            var reg = StringCalculator.FindDelimiter(inputString);
 
-            reg.Should().Be(";");
+            reg.Should().Be(result);
         }
     }
 }
