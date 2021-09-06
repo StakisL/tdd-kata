@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace TTD
 {
@@ -25,6 +26,11 @@ namespace TTD
             }
             
             return result;
+        }
+
+        public static string FindDelimiter(string inputString)
+        {
+            return Regex.Match(inputString, "(?<=^/{2})\\W").Value;
         }
     }
 }
