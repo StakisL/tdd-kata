@@ -10,6 +10,8 @@ namespace TTD
             if (string.IsNullOrEmpty(inputNumbers))
                 return 0;
 
+            var delimeter = FindDelimiter(inputNumbers);
+
             var numbers = inputNumbers.Split(new []{',', '\n'});
 
             var result = 0;
@@ -30,7 +32,9 @@ namespace TTD
 
         public static string FindDelimiter(string inputString)
         {
-            return Regex.Match(inputString, "(?<=^/{2})\\W").Value;
+            var delimiter = Regex.Match(inputString, "(?<=^/{2})\\W").Value;
+            return String.IsNullOrEmpty(delimiter) ? ";" : delimiter;
         }
+        
     }
 }

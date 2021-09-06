@@ -47,6 +47,7 @@ namespace TTD
         [Test]
         [TestCase("//;\n1;2", ";")]
         [TestCase("///fdsgsdgsd\fdsgdsgd", "/")]
+        [TestCase("\n1;2", ";")]
         public void FindDelimiterShouldReturnSemiColumnWhenSemiColumnSetAfterTwoSlashes(string inputString, string result)
         {
             var reg = StringCalculator.FindDelimiter(inputString);
