@@ -56,13 +56,12 @@ namespace TTD
         }
 
         [Test]
-        public void FindNumberWithDelimiters()
+        [TestCase("//;\n1;2", "1;2")]
+        [TestCase("1;2","1;2")]
+        public void FindNumberWithDelimiters(string input, string expected)
         {
-            string input = "//;\n1;2";
-            
-            var result = Regex.Match(input, "\\\n(.*)");
-
-            result.Groups[1].Value.Should().Be("1;2");
+            var result = StringCalculator.FindNumbers(input);
+            result.Should().Be(expected);
         }
     }
 }

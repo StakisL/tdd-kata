@@ -35,5 +35,14 @@ namespace TTD
             var delimiter = Regex.Match(inputString, "(?<=^/{2})\\W").Value;
             return String.IsNullOrEmpty(delimiter) ? ";" : delimiter;
         }
+
+        public static string FindNumbers(string inputString)
+        {
+            string input = "//;\n1;2";
+            
+            var result = Regex.Match(input, "\\\n(.*)");
+            
+            return result.Groups[1].Value;
+        }
     }
 }
