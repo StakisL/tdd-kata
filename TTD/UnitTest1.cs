@@ -54,5 +54,15 @@ namespace TTD
 
             reg.Should().Be(result);
         }
+
+        [Test]
+        public void FindNumberWithDelimiters()
+        {
+            string input = "//;\n1;2";
+            
+            var result = Regex.Match(input, "\\\n(.*)");
+
+            result.Groups[1].Value.Should().Be("1;2");
+        }
     }
 }
