@@ -11,7 +11,18 @@ namespace ChristmasLightKata
 
         public bool[,] GetGrid()
         {
-            return _grid;
+            return _grid.Clone() as bool[,];
+        }
+
+        public void TurnOnAll()
+        {
+            for (int i = 0; i < _grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < _grid.GetLength(1); j++)
+                {
+                    _grid[i, j] = true;
+                }
+            }
         }
     }
 }
