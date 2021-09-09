@@ -20,7 +20,6 @@ namespace TTD
         [TestCase("1,2,3", 6)]
         [TestCase("1,2,3,4,5", 15)]
         [TestCase("1,2\n3",6)]
-        [TestCase("//;\n,1;2",3)]
         public void StringCalcShouldAddTwoNumbersWhenTwoNumbersPassedWithComma(string inputNumbers, int expected)
         {
             //arrange
@@ -34,20 +33,21 @@ namespace TTD
         }
 
         [Test]
-        public void StringCalcShouldThrowArgumentExceptionWhenDelimitersUsedIncorrectly()
+        [TestCase("//;\n,1;2")]
+        [TestCase("1,\n")]
+        public void StringCalcShouldThrowArgumentExceptionWhenDelimitersUsedIncorrectly(string input)
         {
             //arrange
             var calc = new StringCalculator();
-            var testString = "1,\n";
             
             //act & assert
-            Assert.Throws<ArgumentException>(() => calc.Add(testString));
+            Assert.Throws<ArgumentException>(() => calc.Add(input));
         }
 
         [Test]
         [TestCase("//;\n1;2", ";")]
         [TestCase("///fdsgsdgsd\fdsgdsgd", "/")]
-        [TestCase("\n1;2", ";")]
+        [TestCase("\n1;2", ",")]
         public void FindDelimiterShouldReturnSemiColumnWhenSemiColumnSetAfterTwoSlashes(string inputString, string result)
         {
             var reg = StringCalculator.FindDelimiter(inputString);
@@ -58,10 +58,32 @@ namespace TTD
         [Test]
         [TestCase("//;\n1;2", "1;2")]
         [TestCase("1;2","1;2")]
+        [TestCase("","")]
+        [TestCase("1,2\n3","1,2\n3")]
+        [TestCase("\n", "\n")]
         public void FindNumberWithDelimiters(string input, string expected)
         {
             var result = StringCalculator.FindNumbers(input);
             result.Should().Be(expected);
+        }
+
+        [Test]
+        [TestCase("1,2,-3", "negative not allowed: -3")]
+        [TestCase("1,2,-3,-4", "negative not allowed: -3, -4")]
+        [TestCase("-1,-2,-3", "negative not allowed: -1, -2, -3")]
+        public void AddMethodShouldThrowExceptionWhenNegativePassed(string input, string expected)
+        {
+            var calc = new StringCalculator();
+
+            try
+            {
+                calc.Add(input);
+            }
+            catch (Exception e)
+            {
+                e.GetType().Should().Be<ArgumentException>();
+                e.Message.Should().Be(expected);
+            }
         }
     }
 }
