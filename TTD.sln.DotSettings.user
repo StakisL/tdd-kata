@@ -5,5 +5,8 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6f67e737_002D31a2_002D4677_002D9f84_002D17d1c6ad375c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::8917B2C4-A8D4-4019-8243-392C98FDF068::net5.0::TTD.Tests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F92FBA5A-0607-4277-8FE4-8B429872F2ED::net5.0::ChristmasLightKata.Tests.LightGridsShouldBeExists&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F92FBA5A-0607-4277-8FE4-8B429872F2ED::net5.0::ChristmasLightKata.Tests.LightGridTurnOnShouldReturnTurnedOnGrid&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F92FBA5A-0607-4277-8FE4-8B429872F2ED::net5.0::ChristmasLightKata.Tests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
