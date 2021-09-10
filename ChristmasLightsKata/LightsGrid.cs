@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ChristmasLightKata
 {
     public class LightsGrid
@@ -29,6 +31,18 @@ namespace ChristmasLightKata
         {
             _grid[row, column] = !_grid[row, column];
             return _grid[row, column];
+        }
+
+        public List<bool> GetGridRow(int i)
+        {
+            var gridRow = new List<bool>();
+
+            for (int j = 0; j < _grid.GetLength(0); j++)
+            {
+                gridRow.Add(_grid[i,j]);
+            }
+
+            return gridRow;
         }
     }
 }
