@@ -24,5 +24,11 @@ namespace ChristmasLightKata
                 }
             }
         }
+
+        public bool ToggleLightAtPosition(int row, int column)
+        {
+            _grid[row, column] = !_grid[row, column];
+            return _grid[row, column];
+        }
     }
 }
