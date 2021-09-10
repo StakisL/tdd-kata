@@ -33,13 +33,13 @@ namespace ChristmasLightKata
             return _grid[row, column];
         }
 
-        public List<bool> GetGridRow(int i)
+        public List<bool> GetGridRow(int row)
         {
             var gridRow = new List<bool>();
 
-            for (int j = 0; j < _grid.GetLength(0); j++)
+            for (int column = 0; column < _grid.GetLength(0); column++)
             {
-                gridRow.Add(_grid[i,j]);
+                gridRow.Add(_grid[row,column]);
             }
 
             return gridRow;
