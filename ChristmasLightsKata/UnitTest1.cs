@@ -87,5 +87,31 @@ namespace ChristmasLightKata
                 gridRow[i].Should().Be(grid[row, i], $"Grid value at position {i} unexpected");
             }
         }
+
+        [Test]
+        public void WhenTurnOffGridCenterShouldCenterBeTurnedOff()
+        {
+            for (int i = 499; i < 500; i++)
+            {
+                for (int j = 499; j < 500; j++)
+                {
+                    _lightGrid.ToggleLightAtPosition(i, j);
+                }
+            }
+            
+            var grid = _lightGrid.GetGrid();
+            
+            _lightGrid.TurnOffRange(499,499, 500, 500);
+
+            var changedGrid = _lightGrid.GetGrid();
+            
+            for (int i = 499; i < 500; i++)
+            {
+                for (int j = 499; j < 500; j++)
+                {
+                    changedGrid[i, j].Should().Be(false);
+                }
+            }
+        }
     }
 }

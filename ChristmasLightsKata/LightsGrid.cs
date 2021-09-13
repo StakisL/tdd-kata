@@ -44,5 +44,16 @@ namespace ChristmasLightKata
 
             return gridRow;
         }
+
+        public void TurnOffRange(int rowSource, int columnSource, int rowDestination, int columnDestination)
+        {
+            for (int i = rowSource; i < rowDestination; i++)
+            {
+                for (int j = columnSource; j < columnDestination; j++)
+                {
+                    _grid[i, j] = false;
+                }
+            }
+        }
     }
 }

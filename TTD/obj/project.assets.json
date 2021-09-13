@@ -5100,7 +5100,8 @@
         "net5.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/dodopizza/api/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
