@@ -32,7 +32,7 @@ namespace ChristmasLightKata
 
             foreach (var light in grid)
             {
-                light.Should().BeTrue();
+                light.Should().Be(1);
             }
         }
 
@@ -44,13 +44,13 @@ namespace ChristmasLightKata
             var grid = _lightGrid.GetGrid();
 
             //act
-            grid[0, 1] = false;
+            grid[0, 1] = 0;
             var grid2 = _lightGrid.GetGrid();
             
             //assert
             foreach (var light in grid2)
             {
-                light.Should().BeTrue();
+                light.Should().Be(1);
             }
         }
 
@@ -87,7 +87,7 @@ namespace ChristmasLightKata
                 gridRow[i].Should().Be(grid[row, i], $"Grid value at position {i} unexpected");
             }
         }
-
+     
         [Test]
         public void WhenTurnOffGridCenterShouldCenterBeTurnedOff()
         {
@@ -98,9 +98,8 @@ namespace ChristmasLightKata
                     _lightGrid.ToggleLightAtPosition(i, j);
                 }
             }
-            
-            var grid = _lightGrid.GetGrid();
-            
+
+            var startedGrid = _lightGrid.GetGrid();
             _lightGrid.TurnOffRange(499,499, 500, 500);
 
             var changedGrid = _lightGrid.GetGrid();
@@ -109,9 +108,19 @@ namespace ChristmasLightKata
             {
                 for (int j = 499; j < 500; j++)
                 {
-                    changedGrid[i, j].Should().Be(false);
+                    changedGrid[i, j].Should().Be(startedGrid[i,j] - 1);
                 }
             }
+        }
+
+        [Test]
+        public void TurnOnOfOneCellShouldIncreaseTotalBrightnessByOne()
+        {
+            var oldBrightness = _lightGrid.GetTotalBrightness();
+
+            _lightGrid.TurnOnRange(0,0,0,0);
+
+            _lightGrid.GetTotalBrightness().Should().Be(oldBrightness + 1);
         }
     }
 }
