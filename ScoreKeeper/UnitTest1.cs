@@ -5,30 +5,38 @@ namespace ScoreKeeper
 {
     public class Tests
     {
+        private ScoreKeeper _scoreKeeper; 
+            
         [SetUp]
         public void Setup()
         {
+            _scoreKeeper = new ScoreKeeper();
         }
 
         [Test]
         public void ScoreKeeper_ShouldIncreaseScoreByOneForTeamA_WhenCallMethodScoreTeamA1()
         {
-            var scoreKeeper = new ScoreKeeper();
-            
-            scoreKeeper.ScoreTeamA1();
+            var expectedScore = "001:000";
 
-            string scoreResult = scoreKeeper.GetScore();
-            scoreResult.Should().Be("001:000");
+            _scoreKeeper.ScoreTeamA1();
+
+            var scoreResult = _scoreKeeper.GetScore();
+            scoreResult.Should().Be(expectedScore);
         }
 
         [Test]
         public void ScoreKeeper_GetScore_ShouldReturnEmptyScoreWhenCreated()
         {
-            var scoreKeeper = new ScoreKeeper();
+            var expectedScore = "000:000";
 
-            string scoreResult = scoreKeeper.GetScore();
+            var scoreResult = _scoreKeeper.GetScore();
+            
+            scoreResult.Should().Be(expectedScore);
+        }
 
-            scoreResult.Should().Be("000:000");
+        [Test]
+        public void ScoreKeeper_GetScore_ShouldAlwaysReturnSevenCharacters()
+        {
         }
     }
 }
