@@ -35,8 +35,29 @@ namespace ScoreKeeper
         }
 
         [Test]
-        public void ScoreKeeper_GetScore_ShouldAlwaysReturnSevenCharacters()
+        [TestCase(10)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        public void ScoreKeeper_GetScore_ShouldAlwaysReturnSevenCharacters(int scoreIterationNumbers)
         {
+            for (var i = 0; i < scoreIterationNumbers; i++)
+            {
+                _scoreKeeper.ScoreTeamA1();
+            }
+            
+            var scoreResult = _scoreKeeper.GetScore();
+
+            scoreResult.Length.Should().Be(7);
+        }
+
+        [Test]
+        public void ScoreKeeper_ScoreTeamB1_ShouldIncreaseScoreTeamBByOne()
+        {
+            _scoreKeeper.ScoreTeamB1();
+
+            var scoreResult = _scoreKeeper.GetScore();
+
+            scoreResult.Should().Be("000:001");
         }
     }
 }
