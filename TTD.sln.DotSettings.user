@@ -10,5 +10,6 @@
     &lt;TestId&gt;NUnit3x::F92FBA5A-0607-4277-8FE4-8B429872F2ED::net5.0::ChristmasLightKata.Tests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::3E6EA1F7-DB3E-4A97-9395-225AAA641358::net5.0::ScoreKeeper.Tests.ScoreKeeper_ShouldIncreaseScoreByOneForTeamA_WhenCallMethodScoreTeamA1&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::3E6EA1F7-DB3E-4A97-9395-225AAA641358::net5.0::ScoreKeeper.Tests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::D900FE35-BC17-4B96-AED9-77519C69E9DE::net5.0::StringCalculator.Tests.ShouldReturnThree_WhenOneAndTwoPassed&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
