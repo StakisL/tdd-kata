@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace StringCalculator
@@ -41,14 +42,22 @@ namespace StringCalculator
         private int Sum(string[] numbers)
         {
             var sum = 0;
+            var negatives = new List<int>();
             for (int i = 0; i <numbers.Length; i++)
             {
                 var number = int.Parse(numbers[i]);
                 if (number < 0)
-                    throw new ArgumentException("dsds");
+                {
+                    negatives.Add(number);
+                }
                 sum += number;
             }
 
+            if (negatives.Count > 0)
+            {
+                throw new ArgumentException($"Negatives not allowed: {String.Join(',', negatives)}");
+            }
+            
             return sum;
         }
     }
