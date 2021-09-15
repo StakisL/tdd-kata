@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StringCalculator
 {
@@ -20,12 +21,8 @@ namespace StringCalculator
             var sum = 0;
             // ReSharper disable once PossiblyMistakenUseOfParamsMethod
             var numbers = input.Split(',', '\n');
-            for (int i = 0; i <numbers.Length; i++)
-            {
-                sum += int.Parse(numbers[i]);
-            }
 
-            return sum;
+            return Sum(numbers);
         }
 
         private int AddWithCustomDelimiter(string input)
@@ -37,9 +34,19 @@ namespace StringCalculator
             var sum = 0;
             // ReSharper disable once PossiblyMistakenUseOfParamsMethod
             var numbers = numbersString.Split(',', '\n', Convert.ToChar(result));
+            
+            return Sum(numbers);
+        }
+
+        private int Sum(string[] numbers)
+        {
+            var sum = 0;
             for (int i = 0; i <numbers.Length; i++)
             {
-                sum += int.Parse(numbers[i]);
+                var number = int.Parse(numbers[i]);
+                if (number < 0)
+                    throw new ArgumentException("dsds");
+                sum += number;
             }
 
             return sum;
