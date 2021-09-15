@@ -43,6 +43,7 @@ namespace ScoreKeeper
             for (var i = 0; i < scoreIterationNumbers; i++)
             {
                 _scoreKeeper.ScoreTeamA1();
+                _scoreKeeper.ScoreTeamB1();
             }
             
             var scoreResult = _scoreKeeper.GetScore();
@@ -57,7 +58,30 @@ namespace ScoreKeeper
 
             var scoreResult = _scoreKeeper.GetScore();
 
-            scoreResult.Should().Be("000:001");
+            var expectedScore = "000:001";
+            scoreResult.Should().Be(expectedScore);
+        }
+
+        [Test]
+        public void ScoreKeeper_ScoreTeamB2_ShouldIncreaseScoreTeamBByTwo()
+        {
+            _scoreKeeper.ScoreTeamB2();
+
+            var scoreResult = _scoreKeeper.GetScore();
+
+            var expectedScore = "000:002";
+            scoreResult.Should().Be(expectedScore);
+        }
+        
+        [Test]
+        public void ScoreKeeper_ScoreTeamB3_ShouldIncreaseScoreTeamBByThree()
+        {
+            _scoreKeeper.ScoreTeamB3();
+
+            var scoreResult = _scoreKeeper.GetScore();
+
+            var expectedScore = "000:003";
+            scoreResult.Should().Be(expectedScore);
         }
     }
 }
