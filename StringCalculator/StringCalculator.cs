@@ -46,14 +46,23 @@ namespace StringCalculator
         {
             var customDelimiter = input.Substring(2, 1);
 
-            if (customDelimiter == "[")
-            {
-                int startIndex = 3;
-                var endIndex = input.IndexOf(']');
-                customDelimiter = input.Substring(startIndex, endIndex - startIndex);
-            }
+            var startOfDelimiterTag = "[";
+            var endOfDelimiterTag = "]";
 
-            return customDelimiter;
+            if (customDelimiter != startOfDelimiterTag)
+            {
+                return customDelimiter;
+            }
+            
+            int startIndex = 3;
+            var endIndex = input.IndexOf(endOfDelimiterTag, StringComparison.Ordinal);
+
+            if (endIndex == -1)
+            {
+                return customDelimiter;
+            }
+            
+            return input.Substring(startIndex, endIndex - startIndex);
         }
 
         private int Sum(string[] numbers)
