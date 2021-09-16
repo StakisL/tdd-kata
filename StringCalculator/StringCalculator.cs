@@ -30,14 +30,8 @@ namespace StringCalculator
 
         private int AddWithCustomDelimiter(string input)
         {
-            var customDelimiter = input.Substring(2, 1);
+            var customDelimiter = FindCustomDelimiter(input);
 
-            if (customDelimiter == "[")
-            {
-                var endIndex = input.IndexOf(']');
-                customDelimiter = input.Substring(3, endIndex - 3);
-            }
-            
             var numberDigits = input.IndexOf('\n');
             var numbersString = input.Substring(numberDigits + 1);
             
@@ -46,6 +40,20 @@ namespace StringCalculator
             var numbers = numbersString.Split(new[]{",", "\n", customDelimiter}, StringSplitOptions.None);
             
             return Sum(numbers);
+        }
+
+        private string FindCustomDelimiter(string input)
+        {
+            var customDelimiter = input.Substring(2, 1);
+
+            if (customDelimiter == "[")
+            {
+                int startIndex = 3;
+                var endIndex = input.IndexOf(']');
+                customDelimiter = input.Substring(startIndex, endIndex - startIndex);
+            }
+
+            return customDelimiter;
         }
 
         private int Sum(string[] numbers)
