@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
+using FluentAssertions;
 
 namespace StringCalculator
 {
@@ -28,13 +30,20 @@ namespace StringCalculator
 
         private int AddWithCustomDelimiter(string input)
         {
-            var result = input.Substring(2, 1);
+            var customDelimiter = input.Substring(2, 1);
+
+            if (customDelimiter == "[")
+            {
+                var endIndex = input.IndexOf(']');
+                customDelimiter = input.Substring(3, endIndex - 3);
+            }
+            
             var numberDigits = input.IndexOf('\n');
             var numbersString = input.Substring(numberDigits + 1);
             
             var sum = 0;
             // ReSharper disable once PossiblyMistakenUseOfParamsMethod
-            var numbers = numbersString.Split(',', '\n', Convert.ToChar(result));
+            var numbers = numbersString.Split(new[]{",", "\n", customDelimiter}, StringSplitOptions.None);
             
             return Sum(numbers);
         }
