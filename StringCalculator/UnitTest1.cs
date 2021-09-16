@@ -22,6 +22,7 @@ namespace StringCalculator
         [TestCase("1,2,3",6)]
         [TestCase("1\n2,3",6)]
         [TestCase("//;\n1;2",3)]
+        [TestCase("2, 1001", 2)]
         public void ShouldReturnThree_WhenOneAndTwoPassed(string input, int expected)
         {
             int result = _calculator.Add(input);
