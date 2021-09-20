@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using FluentAssertions;
 
 namespace StringCalculator
@@ -30,28 +32,42 @@ namespace StringCalculator
 
         private int AddWithCustomDelimiter(string input)
         {
-            var customDelimiter = FindCustomDelimiter(input);
+            var delimiters = FindCustomDelimiters(input);
 
             var numberDigits = input.IndexOf('\n');
             var numbersString = input.Substring(numberDigits + 1);
             
-            var sum = 0;
-            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
-            var numbers = numbersString.Split(new[]{",", "\n", customDelimiter}, StringSplitOptions.None);
+            var defaultDelimiters = new[]{",", "\n"};
+            delimiters.AddRange(defaultDelimiters);
+            var numbers = numbersString.Split(delimiters.ToArray(), StringSplitOptions.None);
             
             return Sum(numbers);
         }
 
-        private string FindCustomDelimiter(string input)
+        private List<string> FindCustomDelimiters(string input)
         {
             var customDelimiter = input.Substring(2, 1);
-
             var startOfDelimiterTag = "[";
             var endOfDelimiterTag = "]";
-
+            
             if (customDelimiter != startOfDelimiterTag)
             {
-                return customDelimiter;
+                return new List<string>{customDelimiter};
+            }
+
+            var delimiters = new List<string>();
+            var matches = Regex.Matches(input, "\\[(.*?)\\]");
+            foreach (var match in matches)
+            {
+                if(match is not Match currentMatch)
+                    continue;
+                
+                delimiters.Add(currentMatch.Groups[1].Value);
+            }
+
+            if (delimiters.Count > 0)
+            {
+                return delimiters;
             }
             
             int startIndex = 3;
@@ -59,10 +75,10 @@ namespace StringCalculator
 
             if (endIndex == -1)
             {
-                return customDelimiter;
+                return new List<string>{customDelimiter};
             }
             
-            return input.Substring(startIndex, endIndex - startIndex);
+            return new List<string>{input.Substring(startIndex, endIndex - startIndex)};
         }
 
         private int Sum(string[] numbers)

@@ -26,6 +26,7 @@ namespace StringCalculator
         [TestCase("1001,1001", 0)]
         [TestCase("//[^^^]\n1^^^2^^^3", 6)]
         [TestCase("//[\n1[2[3", 6)]
+        [TestCase("//[*][%]\n1*2%3", 6)]
         public void ShouldReturnThree_WhenOneAndTwoPassed(string input, int expected)
         {
             int result = _calculator.Add(input);
