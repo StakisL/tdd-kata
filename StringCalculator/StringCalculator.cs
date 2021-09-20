@@ -10,6 +10,9 @@ namespace StringCalculator
 {
     public class StringCalculator
     {
+        const string StartOfDelimiterTag = "[";
+        const string EndOfDelimiterTag = "]";
+
         public int Add(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -39,6 +42,7 @@ namespace StringCalculator
             
             var defaultDelimiters = new[]{",", "\n"};
             delimiters.AddRange(defaultDelimiters);
+            
             var numbers = numbersString.Split(delimiters.ToArray(), StringSplitOptions.None);
             
             return Sum(numbers);
@@ -46,24 +50,13 @@ namespace StringCalculator
 
         private List<string> FindCustomDelimiters(string input)
         {
-            var customDelimiter = input.Substring(2, 1);
-            var startOfDelimiterTag = "[";
-            var endOfDelimiterTag = "]";
-            
-            if (customDelimiter != startOfDelimiterTag)
+            var delimiter = FindSingleCharacterDelimiter(input, out var customDelimiter);
+            if (delimiter != null)
             {
-                return new List<string>{customDelimiter};
+                return delimiter;
             }
 
-            var delimiters = new List<string>();
-            var matches = Regex.Matches(input, "\\[(.*?)\\]");
-            foreach (var match in matches)
-            {
-                if(match is not Match currentMatch)
-                    continue;
-                
-                delimiters.Add(currentMatch.Groups[1].Value);
-            }
+            var delimiters = FindMultiCharacterDelimiters(input);
 
             if (delimiters.Count > 0)
             {
@@ -71,7 +64,7 @@ namespace StringCalculator
             }
             
             int startIndex = 3;
-            var endIndex = input.IndexOf(endOfDelimiterTag, StringComparison.Ordinal);
+            var endIndex = input.IndexOf(EndOfDelimiterTag, StringComparison.Ordinal);
 
             if (endIndex == -1)
             {
@@ -79,6 +72,33 @@ namespace StringCalculator
             }
             
             return new List<string>{input.Substring(startIndex, endIndex - startIndex)};
+        }
+
+        private static List<string> FindSingleCharacterDelimiter(string input, out string customDelimiter)
+        {
+            customDelimiter = input.Substring(2, 1);
+
+            if (customDelimiter != StartOfDelimiterTag)
+            {
+                return new List<string> {customDelimiter};
+            }
+
+            return null;
+        }
+
+        private static List<string> FindMultiCharacterDelimiters(string input)
+        {
+            var delimiters = new List<string>();
+            var matches = Regex.Matches(input, "\\[(.*?)\\]");
+            foreach (var match in matches)
+            {
+                if (match is not Match currentMatch)
+                    continue;
+
+                delimiters.Add(currentMatch.Groups[1].Value);
+            }
+
+            return delimiters;
         }
 
         private int Sum(string[] numbers)
