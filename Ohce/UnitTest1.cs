@@ -19,6 +19,8 @@ namespace Ohce
 
         [Test]
         [TestCase("2020-07-10 21:00:00.000", "¡Buenas noches Staison!")]
+        [TestCase("2020-07-10 7:00:00.000", "¡Buenas dias Staison!")]
+        [TestCase("2020-07-10 13:00:00.000", "¡Buenas tardes Staison!")]
         public void WhenTimeIsBetweenTwentyAndSixHoursOhce_ShouldGreetGoodNight(string dateTime, string expectedGreet)
         {
             _dateTimeServiceMock.Setup(s => s.GetCurrentDateTime()).Returns(DateTime.Parse(dateTime));
@@ -29,6 +31,16 @@ namespace Ohce
             var greetText = ohce.Start(name);
 
             greetText.Should().Be(expectedGreet);
+        }
+
+        [Test]
+        [TestCase("hui", false)]
+        [TestCase("huh", true)]
+        public void WhenWordIsPalindrome_ThenReturnTrue(string word, bool expectedPalindrome)
+        {
+            var result = Ohce.IsPalindrome(word);
+
+            result.Should().Be(expectedPalindrome);
         }
     }
 }

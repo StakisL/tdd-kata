@@ -15,6 +15,7 @@
     &lt;TestId&gt;NUnit3x::D900FE35-BC17-4B96-AED9-77519C69E9DE::net5.0::StringCalculator.Tests&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests.Test1&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests.WhenTimeIsBetweenTwentyAndSixHoursOhce_ShouldGreetGoodNight&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Buenas/@EntryIndexedValue">True</s:Boolean>
