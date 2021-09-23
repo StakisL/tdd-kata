@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ohce
 {
@@ -19,6 +21,25 @@ namespace Ohce
             _ => throw new ArgumentException()
         };
 
+        public string ReverseWord(string word)
+        {
+            string result = "";
+
+            if (word.Equals("Stop!"))
+                return "Adios Pedro";
+
+            IEnumerable<char> reverseCharacters = word.Reverse();
+            var reversedWord = new string(reverseCharacters.ToArray());;
+            result = reversedWord;
+            
+            if (IsPalindrome(word))
+            {
+                return result + Environment.NewLine + "¡Bonita palabra!";
+            }
+
+            return result;
+        }
+        
         public static bool IsPalindrome(string word)
         {
             for (int i = 0; i < word.Length; i++)

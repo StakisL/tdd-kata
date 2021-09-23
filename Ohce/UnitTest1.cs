@@ -34,6 +34,20 @@ namespace Ohce
         }
 
         [Test]
+        [TestCase("Hello", "olleH")]
+        [TestCase("oto", "oto\n¡Bonita palabra!")]
+        [TestCase("stop", "pots")]
+        [TestCase("Stop!", "Adios Pedro")]
+        public void WhenWeSayHello_HeShouldAnswerOlleh(string word, string expected)
+        {
+            var ohce = new Ohce(_dateTimeServiceMock.Object);
+
+            var result = ohce.ReverseWord(word);
+
+            result.Should().Be(expected);
+        }
+
+        [Test]
         [TestCase("hui", false)]
         [TestCase("huh", true)]
         public void WhenWordIsPalindrome_ThenReturnTrue(string word, bool expectedPalindrome)
