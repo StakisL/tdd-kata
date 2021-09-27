@@ -25,6 +25,11 @@ namespace GameOfLifeKata
                 throw new ArgumentException();
             }
 
+            if (generation.GetLength(0) != _width && generation.GetLength(1) != _height)
+            {
+                throw new ArgumentException();
+            }
+
             _generation = generation;
         }
 
