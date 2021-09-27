@@ -1,3 +1,5 @@
+using System;
+
 namespace GameOfLifeKata
 {
     public class Universe
@@ -13,5 +15,10 @@ namespace GameOfLifeKata
         }
 
         public int GetField() => _width * _height;
+
+        public void SetFirstGeneration(bool[,] generation)
+        {
+            throw new ArgumentException();
+        }
     }
 }
