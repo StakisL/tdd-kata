@@ -16,6 +16,8 @@
     &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests.Test1&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests.WhenTimeIsBetweenTwentyAndSixHoursOhce_ShouldGreetGoodNight&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::F5BCF18B-426E-4628-8C5D-E1DDD180CC8B::net5.0::Ohce.Tests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::55F8123E-3B70-4F7C-BABA-518795967365::net5.0::GameOfLifeKata.Tests.WhenUniverseCreate_ThenUniverseCreated&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::55F8123E-3B70-4F7C-BABA-518795967365::net5.0::GameOfLifeKata.Tests.WhenUniverseWithConcreteParams_ThenGetFieldReturnFieldSizeWithConcreteParams&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Buenas/@EntryIndexedValue">True</s:Boolean>
